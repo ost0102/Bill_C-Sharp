@@ -1,0 +1,1297 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+    @*@foreach (var item in Model)
+    {
+        @Html.DisplayFor(dictionary => item.ContentType)
+    }*@
+}
+
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="Generator" content="">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="ELVIS bill">
+    <meta name="Description" content="ELVIS bill">
+    <title>ELVIS bill</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/basic.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">*@
+
+    <script src="~/Scripts/Pub/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/Pub/jquery.easings.min.js"></script>
+    <script src="~/Scripts/Pub/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/Pub/jquery-ui.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>*@
+    <script src="~/Scripts/Pub/script.js"></script>
+
+    <script type="text/javascript">
+        var _HomeUrl = '@System.Configuration.ConfigurationManager.AppSettings["HomeUrl"]';
+        var _ReportUrl = '@System.Configuration.ConfigurationManager.AppSettings["ReportURL"]';
+    </script>
+
+    @Scripts.Render("~/Scripts/js/common/Comm.js")
+    @Scripts.Render("~/Scripts/js/common/KeyEvent.js")
+    @Scripts.Render("~/Scripts/API/jquery.datetimepicker.full.js")
+</head>
+<body>
+
+    @{
+        if (!string.IsNullOrEmpty(@ViewBag.ContentType))
+        {
+            <input type="hidden" id="hidden_ContentType" value="@ViewBag.ContentType" />
+            <input type="hidden" id="hidden_SearchType" value="@ViewBag.SearchType" />
+        }
+        else
+        {
+            <input type="hidden" id="hidden_ContentType" value="B" />
+            <input type="hidden" id="hidden_SearchType" value="" />
+        }
+    }
+
+    <div id="wrap">
+        <div id="header">
+            <div class="header">
+                <a href="/">
+                    <img src="~/Images/sub_logo.png" />
+                </a>
+                <div class="user_info" style="visibility:hidden">
+                    <p class="user_nm">-</p>
+                    @*<button type="button" id="Modify"><img src="~/Images/icn_user.png" /><span>회원정보 수정</span></button>
+                    <button type="button" id="Logout"><img src="~/Images/icn_logout.png" /><span>로그아웃</span></button>*@
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="manager_textarea_table" id="manager_textarea" style="display:none">
+                <div class="manager_textarea_tablecell">
+                    <strong>
+                        &lt;관리자용 페이지&gt;
+                    </strong>
+                    <span class="manager_textarea_span">
+                        * <span class="color_red font_weight700">사용자</span>는 문서접수 상태일때는 <span class="font_line">승인/거절 버튼권한이 부여</span>됩니다.
+                    </span>
+                    <span class="manager_textarea_span">
+                        * <span class="color_blue font_weight700">관리자</span>는 <span class="font_line">승인/거절 버튼권한이 부여되지 않습니다.</span>
+                    </span>
+                    <span class="manager_textarea_span">
+                        안내시 유의하세요.
+                    </span>
+
+                </div>
+            </div>
+
+            <ul class="gubun_btn" id="Edoc_select_SerachArea">
+                <li><a href="javascript:void(0)" class="on">번호기준</a></li>
+                <li><a href="javascript:void(0)">담당자</a></li>
+            </ul>
+
+            <div class="search_wrap" id="Edoc_SearchN_Wrap">
+                <div class="search_list">
+                    <ul>
+                        @{
+                            //Model 데이터가 없을 경우 생략
+                            if (!string.IsNullOrEmpty(@ViewBag.CRN_NO))
+                            {
+                                if (ViewBag.ContentType == "B")
+                                {
+                                    if (ViewBag.SearchType == "N")
+                                    {
+                                        <li><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="N_Edoc_CRN_NO" value="@ViewBag.CRN_NO" /></li>
+                                        <li><span class="inputTitle02"><label>찾을번호</label></span><input type="text" id="N_Edoc_Value" value="@ViewBag.N_Value" /></li>
+                                    }
+
+                                    if (ViewBag.SearchType == "S")
+                                    {
+                                        <li><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="N_Edoc_CRN_NO" value="" /></li>
+                                        <li><span class="inputTitle02"><label>찾을번호</label></span><input type="text" id="N_Edoc_Value" value="" /></li>
+                                    }
+
+                                    if (ViewBag.SearchType == "E")
+                                    {
+                                        <li><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="N_Edoc_CRN_NO" value="@ViewBag.CRN_NO" /></li>
+                                        <li><span class="inputTitle02"><label>찾을번호</label></span><input type="text" id="N_Edoc_Value" value="@ViewBag.N_Value" /></li>
+                                    }
+                                }
+                                else if (ViewBag.ContentType == "A")
+                                {
+                                    <li><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="N_Edoc_CRN_NO" value="@ViewBag.CRN_NO" /></li>
+                                    <li><span class="inputTitle02"><label>찾을번호</label></span><input type="text" id="N_Edoc_Value" value="@ViewBag.N_Value" /></li>
+                                }
+                            }
+                            else
+                            {
+                                <li><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="N_Edoc_CRN_NO" value="" /></li>
+                                <li><span class="inputTitle02"><label>찾을번호</label></span><input type="text" id="N_Edoc_Value" value="" /></li>
+                            }
+                        }
+
+                        <li class="fr"><a href="javascript:void(0)" class="btn" id="N_Edoc_Search"><span class="btn_search"></span><span class="btnTtx">조회</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="search_wrap" id="Edoc_SearchW_Wrap">
+                <div class="search_list">
+                    <ul>
+                        @{
+                            //Model 데이터가 없을 경우 생략
+                            if (!string.IsNullOrEmpty(@ViewBag.CRN_NO))
+                            {
+                                if (ViewBag.ContentType == "B")
+                                {
+                                    if (ViewBag.SearchType == "N")
+                                    {
+                                        <li class="widthBlcok50"><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="S_Edoc_CRN_NO" value="" /></li>
+                                        <li class="widthBlcok50"><label>담당자 E-mail</label><input type="text" id="S_Edoc_Email" value="" /></li>
+
+                                    }
+
+                                    if (ViewBag.SearchType == "S")
+                                    {
+                                        <li class="widthBlcok50"><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="S_Edoc_CRN_NO" value="@ViewBag.CRN_NO" /></li>
+                                        <li class="widthBlcok50"><label>담당자 E-mail</label><input type="text" id="S_Edoc_Email" value="@ViewBag.Email" /></li>
+                                    }
+
+                                    if (ViewBag.SearchType == "E")
+                                    {
+                                        <li class="widthBlcok50"><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="S_Edoc_CRN_NO" value="" /></li>
+                                        <li class="widthBlcok50"><label>담당자 E-mail</label><input type="text" id="S_Edoc_Email" value="" /></li>
+                                    }
+                                }
+                                else if (ViewBag.ContentType == "A")
+                                {
+                                    <li class="widthBlcok50"><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="S_Edoc_CRN_NO" value="" /></li>
+                                    <li class="widthBlcok50"><label>담당자 E-mail</label><input type="text" id="S_Edoc_Email" value="" /></li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="widthBlcok50"><span class="inputTitle01"><label>사업자번호</label></span><input type="text" id="S_Edoc_CRN_NO" value="" /></li>
+                                <li class="widthBlcok50"><label>담당자 E-mail</label><input type="text" id="S_Edoc_Email" value="" /></li>
+                            }
+                        }
+                    </ul>
+                    <ul>
+                        <li>
+                            <span class="inputTitle04">
+                                <select id="S_Edoc_Select">
+                                    <option value="W">작성일자</option>
+                                    <option value="I">발행일자</option>
+                                </select>
+                            </span>
+
+                            <div id="S_Edoc_FristDate_Area" style="display:inline-block" class="S_Edoc_FristDate_Area">
+                                <input type="text" id="S_Edoc_FristDate" class="inputTrem01" />
+                            </div>
+
+                            <span class="S_Edoc_WaveMark" style="display:inline-block;width:20px;text-align:center">~</span>
+
+                            <div class="S_Edoc_EndDate_Area" id="S_Edoc_EndDate_Area" style="display:inline-block">
+                                <input type="text" id="S_Edoc_LastDate" class="inputTrem02" />
+                            </div>
+
+                            <span class="choiceTerm" id="S_Edoc_ChoiceTerm">
+                                <a href="javascript:void(0)" class="term on" name="1week">1주</a>
+                                <a href="javascript:void(0)" class="term" name="2week">2주</a>
+                                <a href="javascript:void(0)" class="term" name="1month">1개월</a>
+                                <a href="javascript:void(0)" class="term" name="3month">3개월</a>
+                            </span>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <span class="inputTitle05">문서종류</span>
+                            <input type="checkbox" id="S_Edoc_Chk_Bill" checked>
+                            <label for="S_Edoc_Chk_Bill" class="fontRegular">(세금)계산서</label>
+                            <input type="checkbox" id="S_Edoc_Chk_Credit" checked>
+                            <label for="S_Edoc_Chk_Credit" class="fontRegular">입금표</label>
+                        </li>
+                        <li class="fr"><a href="javascript:void(0)" class="more_btn_cate">검색조건 더보기 ▼</a></li>
+                    </ul>
+                    <div class="search_cate">
+                        <ul>
+                            <li><span class="inputTitle06">공급하는자</span> <input type="text" id="S_Edoc_Supplier" /></li>
+                            <li><span class="inputTitle06">계산서번호</span> <input type="text" id="S_Edoc_BillNo" /></li>
+                            <li class="widthBlcok50"><span class="inputTitle07">B/L No</span> <input type="text" id="S_Edoc_BLNO" /></li>
+                        </ul>
+                        <ul>
+                            <li><span class="inputTitle06">전송상태</span></li>
+                            <li>
+                                <span class="blockStyle">
+                                    <input type="checkbox" id="S_Edoc_Chk_All" value="" checked><label for="S_Edoc_Chk_All">전체</label>
+                                    <input type="checkbox" id="S_Edoc_Chk_Accept" value="SO" name="S_Edoc_Chk_State"><label for="S_Edoc_Chk_Accept">문서접수</label>
+                                    <input type="checkbox" id="S_Edoc_Chk_Approval" value="BS" name="S_Edoc_Chk_State"><label for="S_Edoc_Chk_Approval">승인</label>
+                                    <input type="checkbox" id="S_Edoc_Chk_Reject" value="BR" name="S_Edoc_Chk_State"><label for="S_Edoc_Chk_Reject">거절</label>
+                                </span>
+                                <span class="blockStyle">
+                                    <input type="checkbox" id="S_Edoc_Chk_TaxApproval" value="NS" name="S_Edoc_Chk_State"><label for="S_Edoc_Chk_TaxApproval">국세청승인</label>
+                                    <input type="checkbox" id="S_Edoc_Chk_TaxReject" value="NE" name="S_Edoc_Chk_State"><label for="S_Edoc_Chk_TaxReject">국세청오류</label>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div><a href="javascript:void(0)" class="btnPosition btn" id="S_Edoc_Search"><span class="btn_search"></span><span class="btnTtx">조회</span></a></div>
+                </div>
+            </div>
+
+            <div class="bill_btn_list">
+                <p>검색결과 총 <span id="Edoc_ListCount">0</span>건</p>
+                <ul>
+                    <li class="fl all_choi"><input type="checkbox" id="Result_ChkAll"><label for="Result_ChkAll">전체선택</label></li>
+                    <li class="fr">
+                        @*<a href="javascript:void(0)" onclick="fnXMLDownload('D:/ELVISBILL/attachFile/YJTEST/20200715/OOP20140501140111_20200715_1.PDF');"><ins class="icon_totalok"></ins>일괄승인</a>*@
+                        @*<a href="javascript:void(0)" id="ALLPrint"><ins class="icon_totalok"></ins>일괄인쇄</a>*@
+                        <a href="javascript:void(0)" id="ALLCheckTaxApproval" onclick="fnConfirm('All', '');"><ins class="icon_totalok"></ins>일괄승인</a>
+                        <a href="javascript:void(0)" onclick="fnExcelDownload();"><ins class="icon_down"></ins>Excel다운로드</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bill_list" id="Edoc_ListArea">
+                <ul class="bill_list_ul1" id="Edoc_List">
+                    <li class="noData">
+                        데이터가 없습니다.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bill_total_Wrap">
+                <table class="bill_total">
+                    <colgroup>
+                        <col width="18%">
+                        <col width="26%">
+                        <col width="57%">
+                    </colgroup>
+                    <tbody id="Edoc_TotatArea">
+                        <tr>
+                            <td rowspan="2">합계</td>
+                            <td>세금계산서</td>
+                            <td>
+                                <ul>
+                                    <li>총합계 : 0</li>
+                                    <li>부가세액 : 0</li>
+                                    <li>공급가액 : 0</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>입금표</td>
+                            <td class="tar">
+                                <ul>
+                                    <li>총합계 : 0</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--footer s-->
+        <footer id="footer" class="footer">
+            <div class="container position-relative">
+                <div class="footer-flex">
+                    <div class="footer__logo">
+                        <img src="~/Images/footer_logo.png" alt="양재아이티(주)">
+                    </div>
+                    <div class="footer__txt mt-6">
+                        <p class="txt">
+                            <span> 업체명 : 양재아이티(주) </span><span>대표이사 : 조중현</span>
+                        </p>
+                        <p class="txt">
+                            <span> 주소 : 서울특별시 금천구 가산디지털2로 123, 313호 (가산동, 월드메르디앙2차)</span><span> 대표번호 : 1522-7422 </span><span> 팩스 : 02-2025-2778 </span>
+                        </p>
+                        <p class="footer-copyright">
+                            Copyright (c) Yangjae Information Technology Co., Ltd. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+                <div class="rlogo">
+                    <div>
+                        <img src="~/Images/kisaMark.png" alt="kisaMark">
+                        <span>
+                            시스템사업자인증번호<br />
+                            41000217
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--footer e-->
+        <!--layerpopup-->
+        <span class="layerPopup_bg"></span>
+        <div class="layerPopup layerPopup_bill">
+
+            <div style="float:left;clear:both;background:#fff;border-radius:10px;padding:10px;box-sizing:border-box">
+                <div class="layerPopup_title">
+                    <p class="title"><span class="icon_title"></span>세금계산서<span class="orange">상세</span></p>
+                    <i class="xi-close"></i>
+                </div>
+                <div class="popScrollWrap">
+                    <span class="billTitle" name="EdocLayer_Title">전자세금계산서</span>
+                    <div class="pc_mode">
+                        <div class="billPopup1">
+                            <table>
+                                <colgroup>
+                                    <col width="20%" />
+                                    <col width="27.5%" />
+                                    <col width="20%" />
+                                    <col width="27.5%" />
+                                    <col width="5%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkNormalBill" disabled="disabled"><label>일반세금계산서</label></span>
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkModifyBill" disabled="disabled"><label>수정세금계산서</label></span>
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkAgency" disabled="disabled"><label>대행수신</label></span>
+                                        </td>
+                                        <td colspan="2">
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkGwase" disabled="disabled"><label>과세</label></span>
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkYeongse" disabled="disabled"><label>영세</label></span>
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkMyeonse" disabled="disabled"><label>면세</label></span>
+                                        </td>
+                                        <!--<td rowspan="2">
+                                            <a href="#" class="open_bill_detail">▼</a>
+                                        </td>-->
+                                    </tr>
+                                    <tr>
+                                        <th>승인번호</th>
+                                        <td name="EdocLayer_EdocNo">123123123123123123</td>
+                                        <th>계산서번호</th>
+                                        <td name="EdocLayer_BillNo">20200300025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="javascript:void(0)" class="open_bill_detail"><ins class="icon_open"></ins>사업자 정보 확인 ▼</a>
+                        </div>
+
+                        <div class="billPopup2">
+                            <ul>
+                                <li>
+                                    <table class="billPopup2-1">
+                                        <colgroup>
+                                            <col width="27%">
+                                            <col width="23%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3" class="th01">공급하는자</td>
+                                                <td class="th02" style="background:#fdebeb;color:#c12828">등록번호</td>
+                                                <td name="EdocLayer_Supplier_RegNo">123-23-12345</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tac" style="background:#fdebeb;color:#c12828">성 명</td>
+                                                <td name="EdocLayer_Supplier_Name">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tac" style="background:#fdebeb;color:#c12828">상 호</td>
+                                                <td name="EdocLayer_Supplier_Compeny">양재아이티</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="billPopup2-2">
+                                        <colgroup>
+                                            <col width="22%">
+                                            <col width="28%">
+                                            <col width="22%">
+                                            <col width="28%">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>사업장주소</th>
+                                                <td colspan="3" class="twoLine" name="EdocLayer_Supplier_Address">서울시 금천구 가산디지털로</td>
+                                            </tr>
+                                            <tr>
+                                                <th>업태</th>
+                                                <td colspan="3" name="EdocLayer_Supplier_Eobtae">업태</td>
+                                            </tr>
+                                            <tr>
+                                                <th>업종</th>
+                                                <td colspan="3" name="EdocLayer_Supplier_Eobjong">업종</td>
+                                            </tr>
+                                            <tr>
+                                                <th>담당자</th>
+                                                <td name="EdocLayer_Supplier_Manager">누구누구</td>
+                                                <th>부서</th>
+                                                <td name="EdocLayer_Supplier_Part">관리부</td>
+                                            </tr>
+                                            <tr>
+                                                <th>전화</th>
+                                                <td name="EdocLayer_Supplier_Tel">02-123-1234</td>
+                                                <th>핸드폰</th>
+                                                <td name="EdocLayer_Supplier_Phone">010-1234-1234</td>
+                                            </tr>
+                                            <tr>
+                                                <th>이메일</th>
+                                                <td name="EdocLayer_Supplier_Email">testk@naver.com</td>
+                                                <th>종사업장</th>
+                                                <td name="EdocLayer_Supplier_Workplace">0001</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+                                    <table class="billPopup2-1 billPopup2-3">
+                                        <colgroup>
+                                            <col width="27%">
+                                            <col width="23%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th rowspan="3" class="tac">공급받는자</th>
+                                                <td class="tac" style="background:#edf4ff;color:#1c61ca">등록번호</td>
+                                                <td name="EdocLayer_Consumer_RegNo">123-23-12345</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tac" style="background:#edf4ff;color:#1c61ca">성 명</td>
+                                                <td name="EdocLayer_Consumer_Name">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tac" style="background:#edf4ff;color:#1c61ca">상 호</td>
+                                                <td name="EdocLayer_Consumer_Compeny">양재아이티</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="billPopup2-2">
+                                        <colgroup>
+                                            <col width="22%">
+                                            <col width="28%">
+                                            <col width="22%">
+                                            <col width="28%">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>사업장주소</th>
+                                                <td colspan="3" class="twoLine" name="EdocLayer_Consumer_Address">서울시 금천구 가산디지털로</td>
+                                            </tr>
+                                            <tr>
+                                                <th>업태</th>
+                                                <td colspan="3" name="EdocLayer_Consumer_Eobtae">업태</td>
+                                            </tr>
+                                            <tr>
+                                                <th>업종</th>
+                                                <td colspan="3" name="EdocLayer_Consumer_Eobjong">업종</td>
+                                            </tr>
+                                            <tr>
+                                                <th>담당자</th>
+                                                <td name="EdocLayer_Consumer_Manager">누구누구</td>
+                                                <th>부서</th>
+                                                <td name="EdocLayer_Consumer_Part">관리부</td>
+                                            </tr>
+                                            <tr>
+                                                <th>전화</th>
+                                                <td name="EdocLayer_Consumer_Tel">02-123-1234</td>
+                                                <th>핸드폰</th>
+                                                <td name="EdocLayer_Consumer_Phone">010-1234-1234</td>
+                                            </tr>
+                                            <tr>
+                                                <th>이메일</th>
+                                                <td name="EdocLayer_Consumer_Email">testk@naver.com</td>
+                                                <th>종사업장</th>
+                                                <td name="EdocLayer_Consumer_Workplace">0001</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="billPopup3">
+                            <table>
+                                <colgroup>
+                                    <col width="13%" />
+                                    <col width="20%" />
+                                    <col width="13%" />
+                                    <col width="20%" />
+                                    <col width="13%" />
+                                    <col width="*" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>작성일자</th>
+                                        <td name="EdocLayer_WriteDate">20200305</td>
+                                        <th>공급가액</th>
+                                        <td name="EdocLayer_SUP_AMT" style="text-align:right">50,000</td>
+                                        <th>세액</th>
+                                        <td name="EdocLayer_VAT_AMT" style="text-align:right">50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>B/L No</th>
+                                        <td name="EdocLayer_BLNO">ㅛㅓㅑㅅ20200304</td>
+                                        <th>대납비용</th>
+                                        <td name="EdocLayer_WF_AMT" style="text-align:right">50,000</td>
+                                        <th>대납비용포함</th>
+                                        <td name="EdocLayer_TOT_AMT" style="text-align:right">50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>비고</th>
+                                        <td colspan="5" name="EdocLayer_ETC">비고</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table style="margin-top:5px">
+                                <colgroup>
+                                    <col width="13%" />
+                                    <col width="37%" />
+                                    <col width="13%" />
+                                    <col width="37%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>연계문서</th>
+                                        <td name="EdocLayer_Doc">거래명세서 입금표</td>
+                                        <th>첨부파일</th>
+                                        <td>
+                                            <ul class="downList" name="EdocLayer_Attach">
+                                                <li onclick="fnFileDownload()">· 첨부 문서 1</li>
+                                                <li onclick="fnFileDownload()">· 첨부 문서 2</li>
+                                                <li onclick="fnFileDownload()">· 첨부 문서 3</li>
+                                            </ul>
+                                            @*<a href="#" class="total_down"><ins class="icon_down"></ins>전체다운로드</a>*@
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="billPopup4">
+                            <p name="EdocLayer_ListTotal_XMLPath">
+                                <span style="display:inline-block;vertical-align:top;margin-top:15px">검색결과 총 <span class="red">103</span>건	</span>
+                                <a href="#" class="btm_xml"><ins class="icon_down"></ins>xml 다운로드</a>
+                            </p>
+
+                            <table class="listTable">
+                                <colgroup>
+                                    <col width="40px">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                </colgroup>
+                                <tbody name="EdocLayer_ListArea_pc">
+                                    <tr>
+                                        <th>순번</th>
+                                        <th>구입일자</th>
+                                        <th>품목</th>
+                                        <th>규격</th>
+                                        <th>수량</th>
+                                        <th>단가</th>
+                                        <th>공급가</th>
+                                        <th>세액</th>
+                                        <th>비고</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2020.03.05</td>
+                                        <td>품목명1</td>
+                                        <td>KRW</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>30,000</td>
+                                        <td>3,000</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2020.03.05</td>
+                                        <td>품목명1</td>
+                                        <td>KRW</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>30,000</td>
+                                        <td>3,000</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <table>
+                                <colgroup>
+                                    <col width="100px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>문서상태</th>
+                                        <td name="EdocLayer_DocType">문서접수</td>
+                                    </tr>
+                                    <tr>
+                                        <th>거절사유</th>
+                                        <td name="EdocLayer_Rejection"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mobile_mode">
+                        <div class="billPopup1">
+                            <table>
+                                <colgroup>
+                                    <col width="30%" />
+                                    <col width="*" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkNormalBill" disabled="disabled"><label>일반세금계산서</label></span>
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkModifyBill" disabled="disabled"><label>수정세금계산서</label></span>
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkAgency" disabled="disabled"><label>대행수신</label></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkGwase" disabled="disabled"><label>과세</label></span>
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkYeongse" disabled="disabled"><label>영세</label></span>
+                                            <span class="billType"><input type="checkbox" name="EdocLayer_ChkMyeonse" disabled="disabled"><label>면세</label></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>승인번호</th>
+                                        <td name="EdocLayer_EdocNo">123123123123123123</td>
+                                    </tr>
+                                    <tr>
+                                        <th>계산서번호</th>
+                                        <td name="EdocLayer_BillNo">20200300025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="javascript:void(0)" class="open_bill_detail">사업장 상세정보 ▼</a>
+                        </div>
+
+                        <div class="billPopup2">
+                            <ul>
+                                <li>
+                                    <table class="billPopup2-1">
+                                        <colgroup>
+                                            <col width="27%">
+                                            <col width="22%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3" class="th01">공급하는자</td>
+                                                <td class="th02">등록번호</td>
+                                                <td name="EdocLayer_Supplier_RegNo">123-23-12345</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">성명</td>
+                                                <td name="EdocLayer_Supplier_Name">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">상호</td>
+                                                <td name="EdocLayer_Supplier_Compeny">양재아이티</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="billPopup2-2">
+                                        <colgroup>
+                                            <col width="35%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>사업장주소</th>
+                                                <td colspan="3" name="EdocLayer_Supplier_Address">서울시 금천구 가산디지털로</td>
+                                            </tr>
+                                            <tr>
+                                                <th>업태</th>
+                                                <td colspan="3" name="EdocLayer_Supplier_Eobtae">업태</td>
+                                            </tr>
+                                            <tr>
+                                                <th>업종</th>
+                                                <td colspan="3" name="EdocLayer_Supplier_Eobjong">업종</td>
+                                            </tr>
+                                            <tr>
+                                                <th>담당자</th>
+                                                <td name="EdocLayer_Supplier_Manager">누구누구</td>
+                                            </tr>
+                                            <tr>
+                                                <th>부서</th>
+                                                <td name="EdocLayer_Supplier_Part">관리부</td>
+                                            </tr>
+                                            <tr>
+                                                <th>전화</th>
+                                                <td name="EdocLayer_Supplier_Tel">02-123-1234</td>
+                                            </tr>
+                                            <tr>
+                                                <th>핸드폰</th>
+                                                <td name="EdocLayer_Supplier_Phone">010-1234-1234</td>
+                                            </tr>
+                                            <tr>
+                                                <th>이메일</th>
+                                                <td name="EdocLayer_Supplier_Email">testk@naver.com</td>
+                                            </tr>
+                                            <tr>
+                                                <th>종사업장</th>
+                                                <td name="EdocLayer_Supplier_Workplace">0001</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+                                    <div class="border">
+                                        <table class="billPopup2-1 billPopup2-3">
+                                            <colgroup>
+                                                <col width="27%">
+                                                <col width="22%">
+                                                <col width="*">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td rowspan="3" class="th01">공급받는자</td>
+                                                    <td class="th02">등록번호</td>
+                                                    <td name="EdocLayer_Consumer_RegNo">123-23-12345</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="th02">성명</td>
+                                                    <td name="EdocLayer_Consumer_Name">홍길동</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="th02">상호</td>
+                                                    <td name="EdocLayer_Consumer_Compeny">양재아이티</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <table class="billPopup2-2 billPopup2-4">
+                                        <colgroup>
+                                            <col width="35%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>사업장주소</th>
+                                                <td name="EdocLayer_Consumer_Address">서울시 금천구 가산디지털로</td>
+                                            </tr>
+                                            <tr>
+                                                <th>업태</th>
+                                                <td name="EdocLayer_Consumer_Eobtae">업태</td>
+                                            </tr>
+                                            <tr>
+                                                <th>업종</th>
+                                                <td name="EdocLayer_Consumer_Eobjong">업종</td>
+                                            </tr>
+                                            <tr>
+                                                <th>담당자</th>
+                                                <td name="EdocLayer_Consumer_Manager">누구누구</td>
+                                            </tr>
+                                            <tr>
+                                                <th>부서</th>
+                                                <td name="EdocLayer_Consumer_Part">관리부</td>
+                                            </tr>
+                                            <tr>
+                                                <th>전화</th>
+                                                <td name="EdocLayer_Consumer_Tel">02-123-1234</td>
+                                            </tr>
+                                            <tr>
+                                                <th>핸드폰</th>
+                                                <td name="EdocLayer_Consumer_Phone">010-1234-1234</td>
+                                            </tr>
+                                            <tr>
+                                                <th>이메일</th>
+                                                <td name="EdocLayer_Consumer_Email">testk@naver.com</td>
+                                            </tr>
+                                            <tr>
+                                                <th>종사업장</th>
+                                                <td name="EdocLayer_Consumer_Workplace">0001</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="billPopup3">
+                            <table>
+                                <colgroup>
+                                    <col width="35%" />
+                                    <col width="*" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>작성일자</th>
+                                        <td name="EdocLayer_WriteDate">20200305</td>
+                                    </tr>
+                                    <tr>
+                                        <th>공급가액</th>
+                                        <td name="EdocLayer_SUP_AMT" style="text-align:right">50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>세액</th>
+                                        <td name="EdocLayer_VAT_AMT" style="text-align:right">50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>B/L No</th>
+                                        <td name="EdocLayer_BLNO">ㅛㅓㅑㅅ20200304</td>
+                                    </tr>
+                                    <tr>
+                                        <th>대납비용</th>
+                                        <td name="EdocLayer_WF_AMT" style="text-align:right">50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>대납비용포함</th>
+                                        <td name="EdocLayer_TOT_AMT" style="text-align:right">50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>비고</th>
+                                        <td name="EdocLayer_ETC">비고</td>
+                                    </tr>
+                                    <tr>
+                                        <th>연계문서</th>
+                                        <td name="EdocLayer_Doc">거래명세서 입금표</td>
+                                    </tr>
+                                    <tr>
+                                        <th>첨부파일</th>
+                                        <td name="EdocLayer_Attach" style="cursor:pointer;color: #1263CE;">첨부파일<br>첨부파일</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="billPopup4">
+                            <p name="EdocLayer_ListTotal_XMLPath">검색결과 총 <span>XX</span>건<a href="#" class="btm_xml">xml 다운로드</a></p>
+                            <ul name="EdocLayer_ListArea_mo">
+                                <li>
+                                    <span class="partTitle"><span>순번</span> : <span>1</span></span>
+                                    <span class="partTitle"><span>구입일자</span> : <span>2020-03-05</span> </span>
+                                    <span class="partTitle"><span>품목</span> : <span>other charge</span> </span>
+                                    <span class="partTitle"><span>규격</span> : <span>KRW</span></span>
+                                    <span class="partTitle"><span>수량</span> : <span>1</span> </span>
+                                    <span class="partTitle"><span>단가</span> : <span>0.00</span> </span>
+                                    <span class="partTitle"><span>공급가액</span> : <span>30,000</span> </span>
+                                    <span class="partTitle"><span>세액</span> : <span>2,000</span> </span>
+                                    <span class="partTitle"><span>비고</span> : <span></span> </span>
+                                </li>
+                                <li>
+                                    <span class="partTitle"><span>순번</span> : <span>1</span></span>
+                                    <span class="partTitle"><span>구입일자</span> : <span>2020-03-05</span> </span>
+                                    <span class="partTitle"><span>품목</span> : <span>other charge</span> </span>
+                                    <span class="partTitle"><span>규격</span> : <span>KRW</span></span>
+                                    <span class="partTitle"><span>수량</span> : <span>1</span> </span>
+                                    <span class="partTitle"><span>단가</span> : <span>0.00</span> </span>
+                                    <span class="partTitle"><span>공급가액</span> : <span>30,000</span> </span>
+                                    <span class="partTitle"><span>세액</span> : <span>2,000</span> </span>
+                                    <span class="partTitle"><span>비고</span> : <span></span> </span>
+                                </li>
+                            </ul>
+
+                            <table>
+                                <colgroup>
+                                    <col width="25%">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>문서상태</th>
+                                        <td name="EdocLayer_DocType">문서접수</td>
+                                    </tr>
+                                    <tr>
+                                        <th>거절사유</th>
+                                        <td name="EdocLayer_Rejection"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <ul class="billPopup_btn" id="EdocLayer_StatusBtn_Area">
+                        <li><a href="javascript:void(0)">승인</a></li>
+                        <li><a href="javascript:void(0)">거절</a></li>
+                        <li><a href="javascript:void(0)">닫기</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--layerpopup-->
+        <!--layerpopup2-->
+
+        <div class="layerPopup layerPopup_bill2">
+            <div style="float:left;clear:both;background:#fff;border-radius:10px;padding:10px;box-sizing:border-box;width:100%">
+                <div class="layerPopup_title">
+                    <p class="title"><span></span><span class="icon_title"></span>입금표 <span class="orange">상세</span></p>
+                    <i class="xi-close"></i>
+                </div>
+                <div class="popScrollWrap">
+                    <span class="billTitle" name="EdocLayer2_Title">전자입금표</span>
+                    <div class="pc_mode">
+                        <div class="billPopup1">
+                            <table>
+                                <colgroup>
+                                    <col width="20%" />
+                                    <col width="30%" />
+                                    <col width="20%" />
+                                    <col width="30%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>입금표번호</th>
+                                        <td name="EdocLayer2_CreditNo">123123123123123123</td>
+                                        <th>문서구분</th>
+                                        <td name="EdocLayer2_DocType">20200300025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="billPopup2">
+                            <ul>
+                                <li>
+                                    <table class="billPopup2-1">
+                                        <colgroup>
+                                            <col width="27%">
+                                            <col width="22%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3" class="th01">공급하는자</td>
+                                                <td class="th02">등록번호</td>
+                                                <td name="EdocLayer2_Supplier_RegNo">123-23-12345</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">성명</td>
+                                                <td name="EdocLayer2_Supplier_Name">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">상호</td>
+                                                <td name="EdocLayer2_Supplier_Compeny">양재아이티</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+                                    <table class="billPopup2-1 billPopup2-3">
+                                        <colgroup>
+                                            <col width="27%">
+                                            <col width="22%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3" class="th01">공급받는자</td>
+                                                <td class="th02">등록번호</td>
+                                                <td name="EdocLayer2_Consumer_RegNo">123-23-12345</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">성명</td>
+                                                <td name="EdocLayer2_Consumer_Name">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">상호</td>
+                                                <td name="EdocLayer2_Consumer_Compeny">양재아이티</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                            </ul>
+                            <table class="billPopup2-4" name="EdocLayer2_DaeRiJum_Area">
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="20%">
+                                    <col width="10%">
+                                    <col width="20%">
+                                    <col width="10%">
+                                    <col width="*">
+                                </colgroup>
+                                <tr>
+                                    <th rowspan="2">대리점</th>
+                                    <th>등록번호</th>
+                                    <td name="EdocLayer2_DaeRiJum_RegNo">123-23-12345</td>
+                                    <th>성명</th>
+                                    <td name="EdocLayer2_DaeRiJum_Name">테스트</td>
+                                    <th>상호</th>
+                                    <td name="EdocLayer2_DaeRiJum_Compeny">양재아이티</td>
+                                </tr>
+                                <tr>
+                                    <th>주소</th>
+                                    <td colspan="5" name="EdocLayer2_DaeRiJum_Address">서울시 금천구 가산디지털로</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="billPopup3">
+                            <table>
+                                <colgroup>
+                                    <col width="20%" />
+                                    <col width="30%" />
+                                    <col width="20%" />
+                                    <col width="30%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>작성일자</th>
+                                        <td name="EdocLayer2_DaeRiJum_WriteDate">20200305</td>
+                                        <th>합계</th>
+                                        <td name="EdocLayer2_DaeRiJum_Total" style="text-align:right;padding-right:10px">50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>선명 & BL</th>
+                                        <td colspan="3" name="EdocLayer2_DaeRiJum_SunMung_BL">ㅛㅓㅑㅅ20200304</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="billPopup4">
+                            <span style="display:inline-block;vertical-align:top;margin-top:15px">검색결과 총 <span name="EdocLayer2_ListTotal" class="red">0</span>건	</span>
+
+                            <table class="listTable">
+                                <colgroup>
+                                    <col width="40px">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                    <col width="">
+                                </colgroup>
+                                <tbody name="EdocLayer2_ListArea_pc">
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="mobile_mode">
+                        <div class="billPopup1">
+                            <table>
+                                <colgroup>
+                                    <col width="30%" />
+                                    <col width="*" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>입금표번호</th>
+                                        <td name="EdocLayer2_CreditNo">123123123123123123</td>
+                                    </tr>
+                                    <tr>
+                                        <th>문서구분</th>
+                                        <td name="EdocLayer2_DocType">20200300025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="billPopup2">
+                            <ul>
+                                <li>
+                                    <table class="billPopup2-1">
+                                        <colgroup>
+                                            <col width="27%">
+                                            <col width="22%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3" class="th01">공급하는자</td>
+                                                <td class="th02">등록번호</td>
+                                                <td name="EdocLayer2_Supplier_RegNo">123-23-12345</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">성명</td>
+                                                <td name="EdocLayer2_Supplier_Name">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">상호</td>
+                                                <td name="EdocLayer2_Supplier_Compeny">양재아이티</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+                                    <table class="billPopup2-1 billPopup2-3">
+                                        <colgroup>
+                                            <col width="25%">
+                                            <col width="25%">
+                                            <col width="*">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3" class="th01">공급받는자</td>
+                                                <td class="th02">등록번호</td>
+                                                <td name="EdocLayer2_Consumer_RegNo">123-23-12345</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">성명</td>
+                                                <td name="EdocLayer2_Consumer_Name">홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th02">상호</td>
+                                                <td name="EdocLayer2_Consumer_Compeny">양재아이티</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                            </ul>
+                            <table class="billPopup2-4" name="EdocLayer2_DaeRiJum_Area">
+                                <colgroup>
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="*">
+                                </colgroup>
+                                <tr>
+                                    <th rowspan="4">대리점</th>
+                                    <th>등록번호</th>
+                                    <td name="EdocLayer2_DaeRiJum_RegNo">123-23-12345</td>
+                                </tr>
+                                <tr>
+                                    <th>성명</th>
+                                    <td name="EdocLayer2_DaeRiJum_Name">테스트</td>
+                                </tr>
+                                <tr>
+                                    <th>상호</th>
+                                    <td name="EdocLayer2_DaeRiJum_Compeny">양재아이티</td>
+                                </tr>
+                                <tr>
+                                    <th>주소</th>
+                                    <td name="EdocLayer2_DaeRiJum_Address">서울시 금천구 가산디지털로</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="billPopup3">
+                            <table>
+                                <colgroup>
+                                    <col width="40%" />
+                                    <col width="*" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>작성일자</th>
+                                        <td name="EdocLayer2_DaeRiJum_WriteDate">20200305</td>
+                                    </tr>
+                                    <tr>
+                                        <th>합계</th>
+                                        <td name="EdocLayer2_DaeRiJum_Total" style="text-align:right;padding-right:10px">50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>선명 & BL</th>
+                                        <td name="EdocLayer2_DaeRiJum_SunMung_BL">ㅛㅓㅑㅅ20200304</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="billPopup4">
+                            <span style="display:inline-block;vertical-align:top;margin-top:15px">검색결과 총 <span name="EdocLayer2_ListTotal" class="red">103</span>건	</span>
+                            <ul name="EdocLayer2_ListArea_mo">
+                                <li>
+                                    <span class="partTitle"><span>순번</span> : <span>1</span></span>
+                                    <span class="partTitle"><span>구입일자</span> : <span>2020-03-05</span> </span>
+                                    <span class="partTitle"><span>품목</span> : <span>other charge</span> </span>
+                                    <span class="partTitle"><span>규격</span> : <span>KRW</span></span>
+                                    <span class="partTitle"><span>수량</span> : <span>1</span> </span>
+                                    <span class="partTitle"><span>단가</span> : <span>0.00</span> </span>
+                                    <span class="partTitle"><span>공급가액</span> : <span>30,000</span> </span>
+                                    <span class="partTitle"><span>세액</span> : <span>2,000</span> </span>
+                                    <span class="partTitle"><span>비고</span> : <span></span> </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <ul class="billPopup_btn" id="EdocLayer2_StatusBtn_Area">
+                        <li><a href="javascript:void(0)">인쇄</a></li>
+                        <li><a href="javascript:void(0)">닫기</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--layerpopup2-->
+        <!--alert-->
+        <div class="layerPopup alert">
+            <div style="float:left;clear:both;background:#fff;border-radius:10px;box-sizing:border-box;width:100%">
+
+                <div class="">
+                    <span class="billTitle"></span>
+                    <div class="alertTtxWrap" id="Edoc_Alert_Content">
+                    </div>
+
+                    <ul class="billPopup_btn">
+                        <li><a href="javascript:void(0)" onclick="_fnalert_Close();">확인</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--alert-->
+        <!--confirm-->
+        <div class="layerPopup confirm">
+            <div style="float:left;clear:both;background:#fff;border-radius:10px;box-sizing:border-box;width:100%">
+
+                <div class="">
+                    <span class="billTitle"></span>
+                    <div class="confirmTtxWrap">
+                        <!--텍스트일경우
+                        <p>확인요청 내용 적어주세요.<br/>확인요청 내용 적어주세요.<br/>확인요청 내용 적어주세요.<br/>확인요청 내용 적어주세요.<br/>확인요청 내용 적어주세	요.
+                        </p>-->
+                        <!--입력창일경우-->
+
+                        <span id="Edoc_Confirm_Content">
+                            거절 사유를 입력해 주세요.
+                        </span>
+                        <textarea id="Edoc_Confirm_textarea" maxlength="150"></textarea>
+
+                    </div>
+
+                    <ul class="billPopup_btn">
+                        <li><a href="javascript:void(0)" onclick="" id="confirm_true">확인</a></li>
+                        @*<li><a href="javascript:void(0)" onclick="fnConfirm_Check("true");" id="Test_Test">확인</a></li>*@
+                        <li><a href="javascript:void(0)" onclick="fnConfirm_Cancel()">취소</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--alert-->
+    </div>
+
+    <!-- 프로그래스 바 loading -->
+    <div class="loading" id="ProgressBar_Loading" style="display:none">
+        <div class="ispinner ispinner-large">
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+        </div>
+    </div>
+    <!-- 프로그래스 바 loading -->
+
+
+</body>
+</html>
+
+@Scripts.Render("~/Scripts/js/Edoc/Edoc.js")

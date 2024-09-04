@@ -1,0 +1,11 @@
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISPRIME.DATA\obj\Release\ELVISBILL.DATA.csprojAssemblyReference.cache
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISPRIME.DATA\obj\Release\ELVISBILL.DATA.csproj.CoreCompileInputs.cache
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\bin\Release\ELVISBILL.DATA.dll.config
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\bin\Release\ELVISBILL.DATA.dll
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\bin\Release\ELVISBILL.DATA.pdb
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\bin\Release\Oracle.ManagedDataAccess.dll
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\obj\Release\ELVISBILL.DATA.csprojAssemblyReference.cache
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\obj\Release\ELVISBILL.DATA.csproj.CoreCompileInputs.cache
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\obj\Release\ELVISBILL.DATA.csproj.CopyComplete
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\obj\Release\ELVISBILL.DATA.dll
+D:\workspace\elvisprime\00.WEB\ESERVICE\09.ELVISBILL\ELVISBILL\ELVISBILL.DATA\obj\Release\ELVISBILL.DATA.pdb

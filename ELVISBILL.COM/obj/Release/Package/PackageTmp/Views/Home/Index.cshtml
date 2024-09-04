@@ -1,0 +1,232 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="Generator" content="">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="ELVIS bill">
+    <meta name="Description" content="ELVIS bill">
+    <title>ELVIS bill</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/basic.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/jquery.easings.min.js"></script>
+    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="~/Scripts/script.js"></script>
+    @Scripts.Render("~/Scripts/js/common/Comm.js")
+    @Scripts.Render("~/Scripts/js/common/KeyEvent.js")
+</head>
+
+<body>
+    <div id="wrap">
+        <!--mainslider s-->
+        <div class="mainslider_wrap">
+            <ul class="mainslider">
+                <li>
+                    <div class="box box1">
+                        <img src="~/Images/mainImg01.png" style="width:100%;height:100%">
+                    </div>
+                </li>
+                <li>
+                    <div class="box box2"></div>
+                </li>
+            </ul>
+            <div id="visual_btn_L" class="visual_btn"><img src="~/Images/btn_pre.png"><a class="bx-prev" href=""></a></div>
+            <div id="visual_btn_R" class="visual_btn"><img src="~/Images/btn_next.png"><a class="bx-next" href=""></a></div>
+            <div class="main_object">
+                <!--<p class="title">ELVISbill은 <br class="br_pc"/>국제물류를 위한 eTAX플랫폼 입니다.</p>-->
+                <div class="input_form_div">
+                    <ul class="gubun_btn">
+                        <li><a href="javascript:void(0)" class="on">번호기준</a></li>
+                        <li><a href="javascript:void(0)">담당자</a></li>
+                    </ul>
+                    <ul class="input_form">
+                        <!--번호기준-->
+                        <li>
+                            <input type="text" id="N_CRN_NO" title="" value="" name="" data-index="N_Search1" placeholder="사업자번호를 입력하세요" />
+                            <input type="text" id="N_VALUE" title="" value="" name="" data-index="N_Search2" placeholder="B/L No or Invoice No or 계산서번호를 입력하세요" />
+                        </li>
+                        <!--담당지-->
+                        <li style="display:none">
+                            <input type="text" id="S_CRN_NO" title="" value="" name="" data-index="S_Search1" placeholder="사업자번호를 입력하세요" />
+                            <input type="text" id="S_EMAIL" title="" value="" name="" data-index="S_Search2" placeholder="이메일 주소를 입력하세요" />
+                        </li>
+                        <li id="search_btn">
+                            <a href="javascript:void(0)" name="search_btn"><img src="~/Images/searchImg.png" alt="검색" />검색</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="logo"><img src="~/Images/logo.png" alt=""></a>
+            <a href="#content_wrap"><img src="~/Images/btn_down.png" alt="" class="btn_down"></a>
+        </div>
+        <!--mainslider s-->
+
+        <div id="content_wrap" class="content_wrap">
+            <div class="floatWrap">
+                <div class="left_content">
+                    <ul class="" id="notice_list">
+                        <li><span class="title">공지사항</span></li>
+                    </ul>
+
+                    <div class="pageInfo" id="paging_Area">
+                        <a href="#"><<</a>
+                        <a href="#"><</a>
+                        <a href="#" class="on">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">></a>
+                        <a href="#">>></a>
+                    </div>
+                </div>
+                <div class="right_content">
+                    <ul class="">
+                        <li><img src="~/Images/consel.png" alt="고객센터안내" /></li>
+                        <li><a href="https://www.hometax.go.kr/" target="_blank"><img src="~/Images/hometax.png" alt="국세청바로가기" /></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--footer s-->
+        <div id="footer">
+            <ul class="footer_ul">
+                <li class="llogo"><img src="~/Images/footer_logo.png" alt="yjit양재아이티" /></li>
+                <li class="copyright">
+                    양재아이티(주) | 대표이사 : 김명숙 | 서울특별시 금천구 가산디지털2로 123,313호(가산동,월드메르디앙2차)<br class="br_pc" /><br class="br_pad" /><br class="br_m" />
+                    고객센터 : 1522-7422 | 팩스 : 02-2025-2778 |<br class="br_m" /> 홈페이지 : http://www.yjit.co.kr<br class="br_pc" /><br class="br_pad" /><br class="br_m" />
+                    Copyright &copy; YangjaeInformation Technology Co., Ltd.<br class="br_m" /> All Rights Reserved.<br class="br_pc" />
+                </li>
+                <li class="rlogo"><img src="~/Images/ASPMark.png" alt="aspmark" /></li>
+            </ul>
+
+        </div>
+        <!--footer e-->
+        @*<div class="custom_btn"><img src="~/Images/btn_customer.png" alt="온라인접수" /></div>*@
+        <div class="top" onclick="window.scrollTo(0,0);"><img src="~/Images/btn_top.png" alt="위로" /></div>
+
+    </div>
+    <span class="layerPopup_bg"></span>
+    <div class="layerPopup_01">
+        <div style="float:left;background:#fff;border-radius:10px;box-sizing:border-box;width:100%">
+            <div class="popContWrap">
+                <div class="layerPopup_title">
+                    <p class="title"><span class="icon_title"></span>공지사항</p>
+                    <i class="xi-close"></i>
+                </div>
+                <div class="popScrollWrap">
+                    <ul class="layerPopup_subject" id="Layer_Notice_Subject">
+                        <li>ELVIS_BILL 공지사항 2번째</li>
+                        <!--<li>2020-03-08</li>-->
+                    </ul>
+                    <div class="layerPopup_text" id="Layer_Notice_Content">
+                        @*<a href="#">[I</a>DC 서버 교체 안내]
+                            <p>=====================================================================================================================================================================================</p>
+                            <p>세로 길이는 자동으로 늘어납니다.</p> <p>세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.세로 길이는 자동으로 늘어납니다.</p> <p>세로 길이는 자동으로 늘어납니다.</p> <p>세로 길이는 자동으로 늘어납니다.</p> <p>세로 길이는 자동으로 늘어납니다.</p> <p>세로 길이는 자동으로 늘어납니다.</p> <p>세로 길이는 자동으로 늘어납니다.</p> <p>세로 길이는 자동으로 늘어납니다.</p> <p>세로 길이는 자동으로 늘어납니다.</p>*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layerPopup_02">
+        <div class="popContWrap">
+            <div class="layerPopup_title">
+                <p class="title"><span></span>온라인 접수</p>
+                <i class="xi-close"></i>
+            </div>
+            <ul class="layerPopup_subject">
+                <li>업무담당자가 확인 후 연락드리겠습니다.</li>
+            </ul>
+            <div class="layerPopup_table">
+                <table>
+                    <colgroup>
+                        <col width="20%">
+                        <col width="80%">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>회사명</th>
+                            <td><input type="text" title="" value="" name="" style="width:100%"></td>
+                        </tr>
+                        <tr>
+                            <th>고객명</th>
+                            <td><input type="text" title="" value="" name=""></td>
+                        </tr>
+                        <tr>
+                            <th>연락처</th>
+                            <td><input type="text" title="" value="" name=""></td>
+                        </tr>
+                        <tr>
+                            <th>이메일</th>
+                            <td>
+                                <input type="text" title="" value="" name="" style="width:28%"> @Html.Raw("@")
+                                <input type="text" title="" value="" name="" style="width:28%">
+
+                                <select style="width:32%">
+                                    <option>선택</option>
+                                    <option></option>
+                                    <option></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>업무구분</th>
+                            <td>
+                                <select>
+                                    <option>선택</option>
+                                    <option></option>
+                                    <option></option>
+                                </select>
+                                <select>
+                                    <option>선택</option>
+                                    <option></option>
+                                    <option></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>제목</th>
+                            <td><input type="text" title="" value="" name="" style="width:100%"></td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td>
+                                <textarea style="width:100%"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>첨부파일</th>
+                            <td>
+                                <input type="text" title="" value="" name="" style="width:100%">
+                                <a href="#" class="btn_addFile">찾아보기</a>
+                                <input type="text" title="" value="" name="" placeholder="찾아보기를 눌러 파일을 가져오십시오." class="addFile" readonly />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="layerPopup_table">
+                <ul class="billPopup_btn">
+                    <li><a href="#">온라인 접수하기</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@Scripts.Render("~/Scripts/js/Main/Main.js")

@@ -1,0 +1,245 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="Generator" content="">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="ELVIS bill">
+    <meta name="Description" content="ELVIS bill">
+    <title>ELVIS bill</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/basic.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">*@
+
+    <script src="~/Scripts/Pub/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/Pub/jquery.easings.min.js"></script>
+    <script src="~/Scripts/Pub/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/Pub/jquery-ui.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>*@
+    <script src="~/Scripts/Pub/script.js"></script>
+    @Scripts.Render("~/Scripts/js/common/Comm.js")
+
+    <script type="text/javascript">
+        var _HomeUrl = '@System.Configuration.ConfigurationManager.AppSettings["Domain"]';
+    </script>
+
+</head>
+<body class="noScroll">
+    <div id="wrap" style="display:flex; flex-direction:column;">
+        <div id="header" style="display:table;">
+            <a href="/" style="display:table-cell; vertical-align:middle;">
+                <img src="~/Images/subLogo.png" alt="양재아이티 로고" />
+            </a>
+        </div>
+
+        <div class="containerLogin" style="flex:1;">
+
+            <div class="companyNumWrap">
+                <p>사업자 번호 인증</p>
+
+                <input type="text" id="Login_InputCrn" class="companyNum" placeholder="사업자번호를 입력하세요" maxlength="13">
+
+                <!-- AutoComplete_Area -->
+                <div class="AutoComplete_Area" style="display:none">
+                    <ul id="AutoComplete_Area_ul">
+                        @*<li>
+                            <div class="AutoComplete_Frist_div"><span>asdlkjasd</span></div>
+                            <div class="AutoComplete_Second_div" name="Cookie_delete_Btn"><i class="xi-close3"></i></div>
+                        </li>
+                        <li>
+                            <div class="AutoComplete_Frist_div"><span>asdlkjasd</span></div>
+                            <div class="AutoComplete_Second_div" name="Cookie_delete_Btn"><i class="xi-close3"></i></div>
+                        </li>
+                        <li>
+                            <div class="AutoComplete_Frist_div"><span>asdlkjasd</span></div>
+                            <div class="AutoComplete_Second_div" name="Cookie_delete_Btn"><i class="xi-close3"></i></div>
+                        </li>
+                        <li>
+                            <div class="AutoComplete_Frist_div"><span>asdlkjasd</span></div>
+                            <div class="AutoComplete_Second_div" name="Cookie_delete_Btn"><i class="xi-close3" ></i></div>
+                        </li>
+                        <li>
+                            <div class="AutoComplete_Frist_div"><span>asdlkjasd</span></div>
+                            <div class="AutoComplete_Second_div" name="Cookie_delete_Btn"><i class="xi-close3"></i></div>
+                        </li>*@
+                    </ul>
+                </div>
+                <!-- //AutoComplete_Area -->
+
+                <div class="Cookie_save_area">
+                    <input type="checkbox" id="cookie_save_chkbtn" />
+                    <label for="cookie_save_chkbtn">사업자번호 저장(쿠키 사용)</label>
+                </div>
+
+                <p class="fialText" id="warning_text" style="display:none">
+                    잘못된 사업자 번호 입니다. 확인하세요
+                </p>
+                <div class="btnWrap">
+                    <a href="javascript:void(0);" id="Login_CheckCrn">사업자 번호 확인</a>
+                </div>
+
+            </div>
+            <div style="text-align: center;">
+                <span style="font-size: 14px;">※ 사이트 이동이 되지 않을 경우 새로고침 [Ctrl] + [F5] 를 눌러 주세요.</span>
+            </div>
+        </div>
+
+        <!--footer s-->
+        <footer id="footer" class="footer" style="position:unset">
+            <div class="container position-relative">
+                <div class="footer-flex">
+                    <div class="footer__logo">
+                        <img src="~/Images/footer_logo.png" alt="양재아이티(주)">
+                    </div>
+                    <div class="footer__txt mt-6">
+                        <p class="txt">
+                            <span> 업체명 : 양재아이티(주) </span><span>대표이사 : 조중현</span>
+                        </p>
+                        <p class="txt">
+                            <span> 주소 : 서울특별시 금천구 가산디지털2로 123, 313호 (가산동, 월드메르디앙2차)</span><span> 대표번호 : 1522-7422 </span><span> 팩스 : 02-2025-2778 </span>
+                        </p>
+                        <p class="footer-copyright">
+                            Copyright (c) Yangjae Information Technology Co., Ltd. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+                <div class="rlogo">
+                    <div>
+                        <img src="~/Images/kisaMark.png" alt="kisaMark">
+                        <span>
+                            시스템사업자인증번호<br />
+                            41000217
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        @*<div id="footer">
+            <ul class="footer_ul">
+                <li class="llogo"><img src="~/Images/footer_logo.png" alt="yjit양재아이티" /></li>
+                <li class="copyright">
+                    양재아이티(주) | 대표이사 : 조중현 | 서울특별시 금천구 가산디지털2로 123,313호(가산동,월드메르디앙2차)<br class="br_pc" /><br class="br_pad" /><br class="br_m" />
+                    고객센터 : 1522-7422 | 팩스 : 02-2025-2778 |<br class="br_m" /> 홈페이지 : http://www.yjit.co.kr<br class="br_pc" /><br class="br_pad" /><br class="br_m" />
+                    Copyright &copy; YangjaeInformation Technology Co., Ltd.<br class="br_m" /> All Rights Reserved.<br class="br_pc" />
+                </li>
+                <li class="rlogo">
+                    <img src="~/Images/kisaMark.png" alt="kisaMark">
+                    <span>
+                        시스템사업자인증번호<br />
+                        41000217
+                    </span>
+                </li>
+            </ul>
+        </div>*@
+        <!--footer e-->
+        @*<div class="top">
+            <div class="custom_btn"><img src="~/Images/btn_customer.png" alt="온라인접수" /></div>
+            <div class="top_button" onclick="window.scrollTo(0,0);"><img src="~/Images/btn_top.png" alt="위로" /></div>
+        </div>*@
+    </div>
+
+    <!--alert-->
+    <div class="layerPopup alert" style="z-index:10000;">
+        <div style="float:left;clear:both;background:#fff;border-radius:10px;box-sizing:border-box;width:100%">
+
+            <div class="">
+                <span class="billTitle"></span>
+                <div class="alertTtxWrap" id="Edoc_Alert_Content">
+                </div>
+
+                <ul class="billPopup_btn">
+                    <li><a href="javascript:void(0)" onclick="_fnalert_Close();">확인</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--alert-->
+    <!--layer Cookie-->
+    <span class="layerPopup_bg"></span>
+    <div class="layerPopup2 layerCookie">
+        <div class="layerPopup_title_area">
+            <div class="layerPopup_title">
+                <p class="title"><span class="icon_title"></span>쿠키에 의한 개인정보 수집</p>
+                <i class="xi-close2" id="layer2_Close_Btn"></i>
+            </div>
+            <div class="layerPopup2_Content">
+                <div class="layerPopup2_Space">
+                    <strong>1. ELVIS-BILL 은 귀하의 정보를 수시로 저장하고 찾아내는 '쿠키(cookie)'를 운용합니다.</strong>
+                    <p>쿠키란? 웹사이트를 운영하는데 이용되는 서버가 고객님의 브라우저에 보내는 아주 작은 텍스트 파일로서 고객님의 컴퓨터 하드디스크에 저장됩니다.</p>
+                </div>
+
+                <div class="layerPopup2_Space">
+                    <strong>2. ELVIS-BILL 은 다음과 같은 목적을 위해 쿠키를 사용합니다.</strong>
+                    <p>- 쿠키항목 : 사업자번호</p>
+
+                    <p>
+                        - 목적 : 전자세금계산서 확인 검증을 위한 사업자번호 쿠기 저장 관리됩니다.
+                        페이지 재방문시 재사용편의성을 제공됩니다.
+                    </p>
+                    <p>
+                        - 고객님께서는 쿠키 설치에 대한 선택권을 가지고 있습니다.
+                        따라서, 웹브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수도 있습니다.
+                    </p>
+                </div>
+
+                <div class="layerPopup2_Space">
+                    <strong>3. 쿠키 설정 거부 방법</strong>
+                    <p>
+                        예: 쿠키 설정을 거부하는 방법으로는 고객님이 사용하시는 웹 브라우저의 옵션을 선택함으로써
+                        모든 쿠키를 허용하거나 쿠키를 저장할 때마다 확인을 거치거나, 모든 쿠키의 저장을 거부할 수 있습니다.
+                    </p>
+                    <p>
+                        설정방법 예(인터넷 익스플로어의 경우) : 웹 브라우저 상단의 도구 > 인터넷 옵션 > 개인정보
+                        (단, 고객님께서 쿠키 설치를 거부하였을 경우 서비스 제공에 어려움이 있을 수 있습니다.)
+                    </p>
+                </div>
+
+                <div class="layerPopup2_Space">
+                    <strong>4. 쿠키에 의한 개인정보 수집 이외에는 별도로 수집은 하지 않습니다.</strong>
+                </div>
+
+                <ul class="layerPopup2_btn">
+                    <li><a href="javascript:void(0)" id="layer2_Cookie_Approval" class="layerPopup2_Approval"><ins class="icon_ok"></ins>동의</a></li>
+                    <li><a href="javascript:void(0)" id="layer2_Cookie_Refuse" class="layerPopup2_Refuse"><ins class="icon_no"></ins>동의하지 않음</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <!--//layer Cookie-->
+    <!-- layer Cookie delete Y/N -->
+    <div class="layerPopup2 layerCookieDeleteYN" style="min-height:0px;max-width:500px;">
+        <div class="layerPopup_title_area">
+            <!--<div class="layerPopup_title">
+                <p class="title">-->@*<span class="icon_title"></span>쿠키에 의한 개인정보 수집 삭제*@<!--</p>
+                <i class="xi-close2" id="layer2_Close_Btn"></i>
+            </div>-->
+            <div class="layerPopup2_Content" style="min-height:0px;padding:20px 20px;">                
+                <div class="layerPopup2_Space" style="text-align:center">
+                    <strong>
+                        [사업자번호 저장] 해제시 기존 쿠키의 모든 정보가 삭제 됩니다.<br />
+                        삭제 하시겠습니까?
+                    </strong>
+                    @*<p>쿠키란? 웹사이트를 운영하는데 이용되는 서버가 고객님의 브라우저에 보내는 아주 작은 텍스트 파일로서 고객님의 컴퓨터 하드디스크에 저장됩니다.</p>*@
+                </div>
+
+                <ul class="layerPopup2_btn">
+                    <li><a href="javascript:void(0)" id="layer2_Cookie_DeleteY" class="layerPopup2_Approval"><ins class="icon_ok"></ins>[예]</a></li>
+                    <li><a href="javascript:void(0)" id="layer2_Cookie_DeleteN" class="layerPopup2_Refuse"><ins class="icon_no"></ins>[아니요]</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <!-- //layer Cookie delete Y/N -->
+
+</body>
+</html>
+
+@Scripts.Render("~/Scripts/js/CrnLogin/CrnLogin.js")

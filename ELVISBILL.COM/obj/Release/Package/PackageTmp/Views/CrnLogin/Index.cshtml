@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="Generator" content="">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="ELVIS bill">
+    <meta name="Description" content="ELVIS bill">
+    <title>ELVIS bill</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/basic.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/jquery.easings.min.js"></script>
+    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="~/Scripts/script.js"></script>
+    @Scripts.Render("~/Scripts/js/common/Comm.js")
+</head>
+<body class="noScroll">
+    <div id="wrap">
+        <div id="header">
+            <a href="/">
+                <img src="~/Images/subLogo.png" alt="양재아이티 로고" />
+            </a>
+        </div>
+
+        <div class="containerLogin">
+
+            <div class="companyNumWrap">
+                <p>사업자 번호 인증</p>
+
+                <input type="text" id="Login_InputCrn" class="companyNum" placeholder="사업자번호를 입력하세요" maxlength="13">
+                <p class="fialText" id="warning_text" style="display:none">
+                    잘못된 사업자 번호 입니다. 확인하세요
+                </p>
+                <div class="btnWrap">
+                    <a href="javascript:void(0);" id="Login_CheckCrn">사업자 번호 확인</a>
+                </div>
+            </div>
+        </div>
+
+        <!--footer s-->
+        <div id="footer">
+            <ul class="footer_ul">
+                <li class="llogo"><img src="~/Images/footer_logo.png" alt="yjit양재아이티" /></li>
+                <li class="copyright">
+                    양재아이티(주) | 대표이사 : 김명숙 | 서울특별시 금천구 가산디지털2로 123,313호(가산동,월드메르디앙2차)<br class="br_pc" /><br class="br_pad" /><br class="br_m" />
+                    고객센터 : 1522-7422 | 팩스 : 02-2025-2778 |<br class="br_m" /> 홈페이지 : http://www.yjit.co.kr<br class="br_pc" /><br class="br_pad" /><br class="br_m" />
+                    Copyright &copy; YangjaeInformation Technology Co., Ltd.<br class="br_m" /> All Rights Reserved.<br class="br_pc" />
+                </li>
+                <li class="rlogo"><img src="~/Images/ASPMark.png" alt="aspmark" /></li>
+            </ul>
+        </div>
+        <!--footer e-->
+
+
+        @*<div class="top">
+            <div class="custom_btn"><img src="~/Images/btn_customer.png" alt="온라인접수" /></div>
+            <div class="top_button" onclick="window.scrollTo(0,0);"><img src="~/Images/btn_top.png" alt="위로" /></div>
+        </div>*@
+    </div>
+
+</body>
+</html>
+
+@Scripts.Render("~/Scripts/js/CrnLogin/CrnLogin.js")

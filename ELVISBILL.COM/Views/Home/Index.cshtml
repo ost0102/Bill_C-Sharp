@@ -1,0 +1,334 @@
+﻿
+
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="Generator" content="">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="ELVIS bill">
+    <meta name="Description" content="ELVIS bill">
+    <title>ELVIS bill</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/basic.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">*@
+
+    <script src="~/Scripts/Pub/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/Pub/jquery.easings.min.js"></script>
+    <script src="~/Scripts/Pub/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/Pub/jquery-ui.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>*@
+    <script src="~/Scripts/Pub/script.js"></script>
+    @Scripts.Render("~/Scripts/js/common/Comm.js")
+    @Scripts.Render("~/Scripts/js/common/KeyEvent.js")
+
+    <script type="text/javascript">
+        var _HomeUrl = '@System.Configuration.ConfigurationManager.AppSettings["Domain"]';
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <!--mainslider s-->
+        <div class="mainslider_wrap">
+            <ul class="mainslider">
+                <li id="slider1">
+                    <div class="box box1">
+                        <img src="~/Images/mainImg01.png">
+                    </div>
+                </li>
+                @*<li id="slider2">
+                    <div class="box box2"></div>
+                </li>*@
+            </ul>
+            <div class="main_object">
+                <p class="title"><img src="~/Images/slogan01.png"></p>
+                @*<div id="visual_btn_L" class="visual_btn"><div class="btn_pre"></div><a class="bx-prev" href=""></a></div>
+                <div id="visual_btn_R" class="visual_btn"><div class="btn_next on"></div><a class="bx-next" href=""></a></div>*@
+                <!--<p class="title">ELVISbill은 <br class="br_pc"/>국제물류를 위한 eTAX플랫폼 입니다.</p>-->
+                <div class="input_form_div">
+                    <ul class="gubun_btn">
+                        <li class="on">
+                            <a href="javascript:void(0)" class="on">
+                                번호기준
+                            </a>
+                        </li>
+                        <li><a href="javascript:void(0)">담당자</a></li>
+                    </ul>
+                    <ul class="input_form">
+                        <!--번호기준-->
+                        <li>
+                            <input type="text" id="N_CRN_NO" title="" value="" name="" data-index="N_Search1" placeholder="사업자번호를 입력하세요" />
+                            <input type="text" id="N_VALUE" title="" value="" name="" data-index="N_Search2" placeholder="B/L No or Invoice No or 계산서번호를 입력하세요" />
+                        </li>
+                        <!--담당지-->
+                        <li style="display:none">
+                            <input type="text" id="S_CRN_NO" title="" value="" name="" data-index="S_Search1" placeholder="사업자번호를 입력하세요" />
+                            <input type="text" id="S_EMAIL" title="" value="" name="" data-index="S_Search2" placeholder="이메일 주소를 입력하세요" />
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" id="search_btn"><img src="~/Images/searchImg.png" alt="검색" />검색</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="logo"><img src="~/Images/logo.png" alt=""></a>
+            <a href="javascript:void(0)" class="login user_nm" id="Login"><img src="~/Images/icn_login.png">로그인</a>
+            <a href="#content_wrap"><img src="~/Images/btn_down.png" alt="" class="btn_down"></a>
+        </div>
+        <!--mainslider s-->
+
+        <div id="content_wrap" class="content_wrap">
+            <div class="floatWrap">
+                <div class="left_content">
+                    <div class="notice_head">
+                        <table class="tb_head" id="notice_list">
+                            <colgroup>
+                                <col width="80%" />
+                                <col width="5%" />
+                                <col width="15%" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>등록일</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="notice_body">
+                        <table class="tb_body">
+                            <colgroup>
+                                <col width="80%" />
+                                <col width="5%" />
+                                <col width="15%" />
+                            </colgroup>
+                            <tbody id="notice_body_list">
+                                <tr>
+                                    <td><a>[공지] IDC 서버 긴급 점검 안내 - 12/17</a></td>
+                                    <td>김은빈</td>
+                                    <td>2024-01-29</td>
+                                </tr>
+                                <tr>
+                                    <td><a>[공지] IDC 서버 긴급 점검 안내 - 12/17</a></td>
+                                    <td>김은빈</td>
+                                    <td>2024-01-29</td>
+                                </tr>
+                                <tr>
+                                    <td><a>[공지] IDC 서버 긴급 점검 안내 - 12/17</a></td>
+                                    <td>김은빈</td>
+                                    <td>2024-01-29</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pageInfo" id="paging_Area">
+                        <a href="javascript:void(0)"><<</a>
+                        <a href="javascript:void(0)"><</a>
+                        <a href="javascript:void(0)" class="on">1</a>
+                        <a href="javascript:void(0)">2</a>
+                        <a href="javascript:void(0)">3</a>
+                        <a href="javascript:void(0)">4</a>
+                        <a href="javascript:void(0)">5</a>
+                        <a href="javascript:void(0)">></a>
+                        <a href="javascript:void(0)">>></a>
+                    </div>
+                    <div class="searchInfo">
+                        <div class="search_area">
+                            <select id="select_Notice">
+                                <option value="">전체</option>
+                                <option value="T">제목</option>
+                                <option value="C">내용</option>
+                            </select>
+                            <input type="text" id="input_Notice"/>
+                            <button id="notice_s_btn"><img src="/Images/searchImg.png" />검색</button>
+                        </div>
+                    </div>
+                    <div class="serviceInfo">
+                        <div class="service_area">
+                            <div class="left_serv">
+                                <a href="https://www.hometax.go.kr/" class="hometax" target="_blank">
+                                    <img src="~/Images/go_hometax.png" />
+                                    <span class="hometax_tit">국세청 홈텍스 바로가기</span>
+                                </a>
+                            </div>
+                            <div class="right_serv">
+                                <div class="customer">
+                                    <div class="custome_center">
+                                        <span class="custom_tit">고객센터</span>
+                                        <span class="custom_num">1522-7422</span>
+                                    </div>
+                                    <div class="sales_time">
+                                        <p class="time_tit">운영시간 평일 : 9:00 ~ 18:00 (주말, 공휴일 휴무)</p>
+                                        <p class="time_tit">점심시간 제외 : 11:30 ~ 13:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="right_content">
+                        <ul class="">
+                            <li><img src="~/Images/consel.png" alt="고객센터안내" /></li>
+                            <li><a href="https://www.hometax.go.kr/" target="_blank"><img src="~/Images/hometax.png" alt="국세청바로가기" /></a></li>
+                        </ul>
+                    </div>*@
+            </div>
+        </div>
+
+        <!--footer s-->
+        <footer id="footer" class="footer">
+            <div class="container position-relative">
+                <div class="footer-flex">
+                    <div class="footer__logo">
+                        <img src="~/Images/footer_logo.png" alt="양재아이티(주)">
+                    </div>
+                    <div class="footer__txt mt-6">
+                        <p class="txt">
+                            <span> 업체명 : 양재아이티(주) </span><span>대표이사 : 조중현</span>
+                        </p>
+                        <p class="txt">
+                            <span> 주소 : 서울특별시 금천구 가산디지털2로 123, 313호 (가산동, 월드메르디앙2차)</span><span> 대표번호 : 1522-7422 </span><span> 팩스 : 02-2025-2778 </span>
+                        </p>
+                        <p class="footer-copyright">
+                            Copyright (c) Yangjae Information Technology Co., Ltd. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+                <div class="rlogo">
+                    <div>
+                        <img src="~/Images/kisaMark.png" alt="kisaMark">
+                        <span>
+                            시스템사업자인증번호<br />
+                            41000217
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--footer e-->
+        @*<div class="custom_btn"><img src="~/Images/btn_customer.png" alt="온라인접수" /></div>*@
+        <div class="top" onclick="window.scrollTo(0,0);" style="display:none"><img src="~/Images/btn_top.png" alt="위로" /></div>
+
+    </div>
+    <span class="layerPopup_bg"></span>
+
+    <!-- 로그인 팝업 -->
+    <div class="layer_zone" id="Login_pop">
+        <div class="layer_wrap">
+            <div class="layer_inwrap">
+                <article class="layer_cont">
+                    <div class="login_box">
+                        <div class="login-left">
+                            <div class="login_bg">
+                                <img src="~/Images/login_tit.png" />
+                            </div>
+                        </div>
+                        <div class="login-right">
+                            <div class="login_input">
+                                <h4 class="login_m_tit">
+                                    <img src="~/Images/login_m_tit.png" />
+                                    <span>bill</span>
+                                </h4>
+                                <div class="int_box">
+                                    <input type="text" placeholder="아이디"id="Login_ID" style="text-transform:uppercase;" data-index="login1"/>
+                                </div>
+                                <div class="int_box">
+                                    <input type="password" placeholder="비밀번호" id="Login_PW" data-index="login2"/>
+                                </div>
+                                <div class="chk_box" style="display:flex;">
+                                    <div class="chk">
+                                        <span class="check type1">
+                                            <input type="checkbox" id="login_keep" name="login_keep" class="chk">
+                                            <label for="login_keep">아이디 저장</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="login_btn">
+                                    <button type="button" id="user_login_btn">로그인</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="layer_close">
+                        <img src="~/Images/icn_close.png" />
+                    </button>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- 공지사항 팝업 -->
+    <div class="layer_zone" id="Notice">
+        <div class="layer_wrap">
+            <div class="layer_inwrap">
+                <article class="layer_cont">
+                    <div class="modify-top">
+                        <p class="modify_title">공지사항</p>
+                    </div>
+                    <div class="notice_area">
+                        <div class="notice-title_box">
+                            @*<p class="no_tit">[공지]약관 변경</p>*@
+                        </div>
+                        <div class="notice_cont">
+                            @*<p>
+                                안녕하세요, 양재아이티 입니다<br />
+                                저희는 항상 고객님들의 편의를 고려하여 서비스를 개선하고 있습니다.<br />
+                                이에 따라 약관의 일부 내용이 변경되었음을 알려드립니다.<br />
+                                변경된 약관은 2024.01.01부터 적용될 예정이며, 변경된 내용은 다음과 같습니다.<br /><br />
+
+                                16.사용자 정보의 보호<br />
+                                1) 회사는 수집된 사용자정보가 분실ㆍ도난ㆍ누출ㆍ변조 또는 훼손되지 아니하도록 보안 및 안전성 확보에 필요한 기술적인 조치 등을 취하여야 한다.<br />
+                                2) 회사는 서비스와 관련하여 취득한 사용자의 개인정보를 본인의 사전 승낙 없이 타인에게 누설, 공개 또는 배포할 수 없으며, 서비스 관련 업무 이외의<br />
+                                상업적 목적으로 사용할 수 없다.<br /><br />
+
+                                다만, 다음 각 항에 해당하는 경우에는 제외한다.<br />
+                                1) 관계법령에 의하여 수사상의 목적으로 관계기간으로부터 요구 받은 경우<br />
+                                2) 서비스 제공에 따른 이용요금의 정산을 위하여 필요한 경우<br />
+                                3) 통계작성, 학술연구 또는 시장조사 등을 위하여 필요한 경우로서 특정 개인을 식별할 수 없는 형태로 제공하는 경우<br />
+                                4) 기타 관계법령에 의해 필요한 경우<br /><br />
+
+                                고객님의 서비스 이용에는 아무런 변경이 없습니다.<br />
+                                항상 보다 나은 서비스를 제공하기 위해 최선을 다하겠습니다. 감사합니다.<br />
+                            </p>*@
+                        </div>
+                    </div>
+                    <button type="button" class="layer_close">
+                        <img src="~/Images/icn_close.png" />
+                    </button>
+                </article>
+            </div>
+        </div>
+    </div>
+
+
+    <!--alert-->
+    <div class="layerPopup alert" style="z-index:100000">
+        <div style="float:left;clear:both;background:#fff;border-radius:10px;box-sizing:border-box;width:100%">
+
+            <div class="">
+                <span class="billTitle"></span>
+                <div class="alertTtxWrap" id="Edoc_Alert_Content">
+                </div>
+
+                <ul class="billPopup_btn">
+                    <li><a href="javascript:void(0)" onclick="_fnalert_Close();">확인</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--alert-->
+</body>
+</html>
+
+@Scripts.Render("~/Scripts/js/Main/Main.js")
